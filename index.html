@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check Your Code</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {font-family: Arial, sans-serif; text-align: center; margin-top: 80px; background: #f9f9f9;}
+    h1 {color: #333;}
+    input {font-size: 24px; padding: 15px; width: 280px; text-transform: uppercase;}
+    button {font-size: 24px; padding: 15px 30px; margin-left: 10px; background: #007bff; color: white; border: none; cursor: pointer;}
+    #result {font-size: 80px; font-weight: bold; margin-top: 50px; height: 100px;}
+  </style>
+</head>
+<body>
+  <h1>Enter your code</h1>
+  <input type="text" id="code" placeholder="e.g. GB 2253" autofocus>
+  <button onclick="check()">Check</button>
+  <div id="result"></div>
 
+  <script>
+    const valid = new Set([
+      "GB2253","GB2261","GB2324","GB2430","GB2444","GB2517","GB2552","GB2553","GB2569","GB2654",
+      "GB2664","GB2698","GB2744","GB2775","GB2866","GB2932","GB4015","GB4227","GB4451","GB4562",
+      "GB4649","GB4770","GB4771","GB4792","GB4847","GB4858",
+      "GBBI115","GBBI170","GBBI171","GBBI186","GBBI222",
+      "GBBJ022",
+      "GBBN024","GBBN033","GBBN066",
+      "GBBO061","GBBO070","GBBO080",
+      "GBBY015",
+      "GBDL031",
+      "GBJF028",
+      "GBKM022","GBKM103",
+      "GBLB021",
+      "GBLD200",
+      "GBLJ043",
+      "GBMO301",
+      "GBNM012",
+      "GBRE009",
+      "GBVY073",
+      "GBWF025",
+      "IE407EC","IE512EC"
+    ].map(c => c.replace(/\s/g,'').toUpperCase()));
+
+    function check() {
+      let input = document.getElementById('code').value.trim().toUpperCase().replace(/\s/g,'');
+      if (valid.has(input)) {
+        document.getElementById('result').innerHTML = '<span style="color:green">YES</span>';
+      } else {
+        document.getElementById('result').innerHTML = '<span style="color:red">NO</span>';
+      }
+    }
+
+    // Allow pressing Enter
+    document.getElementById('code').addEventListener('keypress', e => { if (e.key === 'Enter') check(); });
+  </script>
+</body>
+</html>
